@@ -1,66 +1,27 @@
 # Proyecto de Automatización - Automation Exercise
 
-Proyecto de automatización de pruebas web para [automationexercise.com](http://automationexercise.com) utilizando Serenity BDD, Selenium WebDriver, Cucumber BDD y el patrón Screenplay.
+Pruebas automatizadas para [automationexercise.com](http://automationexercise.com) con Serenity BDD y Screenplay Pattern.
 
-## Tecnologías Utilizadas
+## Tecnologías
 
-- **Java 11**
-- **Maven** - Gestión de dependencias
-- **Serenity BDD 4.1.14** - Framework de automatización y reportes
-- **Selenium WebDriver 4.18.1** - Automatización del navegador
-- **Cucumber 7.18.0** - BDD (Behavior Driven Development)
-- **Screenplay Pattern** - Patrón de diseño para pruebas mantenibles
-- **JUnit 5** - Framework de pruebas
+- Java 11, Maven, Serenity BDD 4.1.14, Selenium 4.18.1, Cucumber 7.18.0
 
-## Estructura del Proyecto
+## Estructura
 
 ```
-prj-ScreenPlay/
-├── src/test/java/com/automation/
-│   ├── data/                    # Datos de prueba centralizados
-│   │   ├── TestData.java
-│   │   └── Secciones.java
-│   ├── interactions/            # Interacciones personalizadas
-│   │   └── CerrarPopupsYAnuncios.java
-│   ├── questions/               # Questions (verificaciones)
-│   │   ├── ProductoEnCarrito.java
-│   │   ├── ElPrecioDelProducto.java
-│   │   ├── LaCantidadDelProducto.java
-│   │   ├── ElTotalDelProducto.java
-│   │   └── ...
-│   ├── tasks/                   # Tasks (acciones)
-│   │   ├── AgregarProductoConCantidadPorNombre.java
-│   │   ├── AgregarProductosAlCarrito.java
-│   │   ├── NavegarHaciaSeccion.java
-│   │   ├── RegistrarseEnElCheckout.java
-│   │   ├── RealizarElPago.java
-│   │   └── ...
-│   ├── userinterfaces/          # Page Objects (selectores)
-│   │   ├── ProductsPage.java
-│   │   ├── CartPage.java
-│   │   ├── CheckoutPage.java
-│   │   └── ...
-│   ├── stepdefinitions/         # Step Definitions
-│   │   ├── CompraProductosStepDefinitions.java
-│   │   └── Hooks.java
-│   └── runners/                 # Test Runners
-│       └── ExamenTestRunner.java
-├── src/test/resources/
-│   ├── features/
-│   │   └── compra_productos.feature
-│   └── serenity.conf
-├── pom.xml
-├── serenity.properties
-└── README.md
+src/test/java/com/automation/
+├── data/           # TestData, Secciones
+├── interactions/   # CerrarPopupsYAnuncios
+├── questions/      # ProductoEnCarrito, ElPrecioDelProducto, etc.
+├── tasks/          # AgregarProductoConCantidadPorNombre, RegistrarseEnElCheckout, etc.
+├── userinterfaces/ # ProductsPage, CartPage, CheckoutPage, etc.
+├── stepdefinitions/# CompraProductosStepDefinitions, Hooks
+└── runners/        # ExamenTestRunner
 ```
 
 ## Requisitos Implementados
 
-### Requisito A - Agregar productos al carrito y verificar precios
-- Navegar a Products
-- Agregar producto con cantidad específica
-- Verificar precio, cantidad y total en el carrito
-
+### Requisito A - Agregar productos y verificar precios
 ```gherkin
 Scenario Outline: Agregar producto al carrito y verificar precio
   When hace clic en el botón "Products"
@@ -74,72 +35,28 @@ Scenario Outline: Agregar producto al carrito y verificar precio
     | Men Tshirt | Rs. 400  | 3        | Rs. 1200   |
 ```
 
-### Requisito B - Verificar cantidad de producto
-- Ver detalle de producto
-- Modificar cantidad
-- Verificar cantidad en carrito
+### Requisito B - Verificar cantidad en carrito
 
-### Requisito C - Realizar pedido completo
-- Agregar productos
-- Registrarse durante checkout
-- Completar datos de pago
-- Verificar pedido exitoso
+### Requisito C - Pedido completo con registro
 
-## Prerequisitos
-
-- Java JDK 11 o superior
-- Maven 3.6 o superior
-- Google Chrome
-
-## Instalación
+## Ejecución
 
 ```bash
-git clone https://github.com/andryi777/PRJ-SCREENPLAY.git
-cd PRJ-SCREENPLAY
+# Instalar
 mvn clean install -DskipTests
-```
 
-## Ejecución de Pruebas
-
-### Ejecutar todas las pruebas
-```bash
+# Ejecutar todas las pruebas
 mvn clean verify
-```
 
-### Ejecutar por tags
-```bash
-# Solo requisito A
+# Por tags
 mvn clean verify -Dcucumber.filter.tags="@requisito_a"
-
-# Solo requisito B
 mvn clean verify -Dcucumber.filter.tags="@requisito_b"
-
-# Solo requisito C
 mvn clean verify -Dcucumber.filter.tags="@requisito_c"
-
-# Todos los requisitos
-mvn clean verify -Dcucumber.filter.tags="@examen"
-```
-
-### Ejecutar en modo headless
-```bash
-mvn clean verify -Dheadless.mode=true
 ```
 
 ## Reportes
 
-Después de ejecutar las pruebas:
-
-- **Reporte Serenity**: `target/site/serenity/index.html`
-
-## Patrón Screenplay
-
-El proyecto sigue el patrón Screenplay:
-
-- **Tasks**: Acciones de alto nivel (AgregarProductoConCantidadPorNombre, RegistrarseEnElCheckout)
-- **Questions**: Verificaciones del estado (ProductoEnCarrito, ElPrecioDelProducto)
-- **UserInterfaces**: Selectores de elementos (ProductsPage, CartPage)
-- **Interactions**: Acciones de bajo nivel (CerrarPopupsYAnuncios)
+`target/site/serenity/index.html`
 
 ## Autor
 
